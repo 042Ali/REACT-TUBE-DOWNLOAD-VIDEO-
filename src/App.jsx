@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
-  const [users, setUsers] = useState();
-  const [url, setUrl] = useState();
+  const [download, setDownload] = useState("");
+  const [url, setUrl] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const notify = () => toast.success("Video in Download");
 
@@ -15,9 +16,8 @@ export default function App() {
         `https://yt-dowloader-api-fastapi-1.onrender.com/download?url=${url}`
       )
       .then((response) => {
-        setUsers(response.data);
-      })
-      .catch(() => setUsers(""));
+        setDownload(response.data);
+      });
   }, [url]);
 
   const handleChange = (event) => {
@@ -26,8 +26,8 @@ export default function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (downloadLink) {
-      window.location.href = downloadLink;
+    if (download) {
+      window.location.href = download;
     }
   };
 
