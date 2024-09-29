@@ -52,6 +52,7 @@ export default function App() {
           id="outlined-basic"
           label="URL here...."
           variant="outlined"
+          value={url}
           onChange={handleChange}
         />
         <Button
